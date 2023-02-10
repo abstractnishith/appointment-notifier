@@ -6,6 +6,7 @@ require('dotenv').config();
 let options = {
   args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
   defaultViewport: chrome.defaultViewport,
+  executablePath: "/usr/bin/google-chrome",
   headless: true,
   ignoreHTTPSErrors: true,
 };
