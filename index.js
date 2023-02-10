@@ -11,6 +11,7 @@ let options = {
   ignoreHTTPSErrors: true,
 };
 
+
 const {delay, sendEmail, logStep} = require('./utils');
 const {siteInfo, loginCred, IS_PROD, NEXT_SCHEDULE_POLL, MAX_NUMBER_OF_POLL, NOTIFY_ON_DATE_BEFORE} = require('./config');
 
