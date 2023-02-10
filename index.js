@@ -1,6 +1,14 @@
-const puppeteer = require('puppeteer');
+let chrome = require("chrome-aws-lambda");
+const puppeteer = require("puppeteer-core");
 const {parseISO, compareAsc, isBefore, format} = require('date-fns')
 require('dotenv').config();
+
+let options = {
+  args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
+  defaultViewport: chrome.defaultViewport,
+  headless: true,
+  ignoreHTTPSErrors: true,
+};
 
 const {delay, sendEmail, logStep} = require('./utils');
 const {siteInfo, loginCred, IS_PROD, NEXT_SCHEDULE_POLL, MAX_NUMBER_OF_POLL, NOTIFY_ON_DATE_BEFORE} = require('./config');
@@ -93,8 +101,8 @@ const process = async (browser) => {
 
 
 (async () => {
-  const browser = await puppeteer.launch(!IS_PROD ? {headless: false}: undefined);
-
+  //const browser = await puppeteer.launch(!IS_PROD ? {headless: false}: undefined);
+  let browser = await puppeteer.launch(options);
   try{
     await process(browser);
   }catch(err){
